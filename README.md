@@ -1,2 +1,2 @@
 # node-yarn-hexo
-Docker using node.js create hexo blog
+使用Docker架設Hexo Blog Server
