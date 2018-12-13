@@ -29,10 +29,10 @@ RUN chmod +x /script/init.sh
 
 RUN npm install -g hexo-cli
 
+VOLUME  ["/workspace"]
+
 # replace this with your application's default port
 EXPOSE 4000
 
 # run hexo server
-ENTRYPOINT ["/script/init.sh"]
-
-VOLUME  ["/workspace"]
+CMD /script/init.sh
