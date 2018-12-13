@@ -18,7 +18,7 @@ RUN yarn global add hexo && \
 
 WORKDIR /workspace/blog
 
-ADD ./_config.yml .
+ADD ./_config.yml ./
 
 ADD ./themes/next/_config.yml ./themes/next/_config.yml
 
