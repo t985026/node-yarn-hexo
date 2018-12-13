@@ -1,6 +1,8 @@
 FROM node:10.14.2-slim
 #Version 1.20
 
+ENV TZ=Asia/Taipai
+
 # Global install yarn package manager
 RUN apt-get update && apt-get install -y curl apt-transport-https && \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
@@ -17,9 +19,9 @@ RUN yarn global add hexo && \
 
 WORKDIR /workspace/blog
 
-COPY ./_config.yml ./_config.yml
+COPY _config.yml /workspace/blog/_config.yml
 
-COPY ./themes/next/_config.yml ./themes/next/_config.yml
+COPY themes/next/_config.yml /workspace/blog/themes/next/_config.yml
 
 COPY init.sh /script/
 
@@ -31,6 +33,6 @@ RUN npm install -g hexo-cli
 EXPOSE 4000
 
 # run hexo server
-CMD /script/init.sh
+ENTRYPOINT ["/script/init.sh"]
 
 VOLUME  ["/workspace"]
