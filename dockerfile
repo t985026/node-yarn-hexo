@@ -1,5 +1,5 @@
 FROM node:10.14.2-slim
-#Version 1.12
+#Version 1.20
 
 # Global install yarn package manager
 RUN apt-get update && apt-get install -y curl apt-transport-https && \
@@ -13,14 +13,14 @@ WORKDIR /workspace
 RUN yarn global add hexo && \
     hexo init blog && \
     cd blog && \
-    npm install --save hexo-admin && \
+    npm install --save hexo-admin-ehc && \
     git clone https://github.com/iissnan/hexo-theme-next themes/next
 
 WORKDIR /workspace/blog
 
-ADD ./_config.yml ./
+ADD _config.yml /workspace/blog/_config.yml
 
-ADD ./themes/next/_config.yml ./themes/next/_config.yml
+ADD themes/next/_config.yml /workspace/blog/themes/next/_config.yml
 
 # replace this with your application's default port
 EXPOSE 4000
