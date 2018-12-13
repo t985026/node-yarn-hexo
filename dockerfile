@@ -1,4 +1,5 @@
 FROM node:10.14.2-slim
+#Version 1.12
 
 # Global install yarn package manager
 RUN apt-get update && apt-get install -y curl apt-transport-https && \
@@ -7,10 +8,12 @@ RUN apt-get update && apt-get install -y curl apt-transport-https && \
     apt-get update && apt-get install -y yarn git
 
 WORKDIR /workspace
-# 安裝
+
+# install hexo
 RUN yarn global add hexo && \
     hexo init blog && \
     cd blog && \
+    npm install --save hexo-admin && \
     git clone https://github.com/iissnan/hexo-theme-next themes/next
 
 WORKDIR /workspace/blog
@@ -24,3 +27,5 @@ EXPOSE 4000
 
 # run hexo server
 CMD ["hexo", "server","-i","0.0.0.0"]
+
+VOLUME  ["/workspace"]
