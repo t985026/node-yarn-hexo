@@ -1,9 +1,5 @@
 FROM node:10.14.2-slim
-<<<<<<< HEAD
-#Version 1.21 
-=======
 #Version 1.30
->>>>>>> origin/alpha
 
 ENV TZ=Asia/Taipai
 
