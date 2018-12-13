@@ -13,7 +13,7 @@ WORKDIR /workspace
 RUN yarn global add hexo && \
     hexo init blog && \
     cd blog && \
-    npm install --save hexo-admin && \
+    npm install --save hexo-admin-ehc && \
     git clone https://github.com/iissnan/hexo-theme-next themes/next
 
 WORKDIR /workspace/blog
