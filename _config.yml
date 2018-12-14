@@ -15,7 +15,7 @@ timezone:
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://yoursite.com
 root: /
-permalink: :year/:month/:day/:title/
+permalink: posts/:year-:month-:day/:abbrlink/
 permalink_defaults:
 
 # Directory
@@ -79,3 +79,42 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:
+
+# abbrlink config
+abbrlink:
+  alg: crc32  #support crc16(default) and crc32
+  rep: hex    #support dec(default) and hex
+
+# archive_generator:
+#   enabled: true
+#   per_page: 10
+#   yearly: true
+#   monthly: true
+#   daily: false
+#   order_by: '-date'
+#
+# category_generator:
+#    per_page: 10
+
+# fragments_generator:
+#   dir: 'fragments',
+#   index_layout: 'fragments',
+#   cate_layout: 'fragments',
+#   tag_layout: 'fragments',
+#   per_page: 10,
+#   order_by: '-date'
+
+# index_generator:
+#   path: ''
+#   per_page: 10
+#   order_by: '-date'
+#
+# tag_generator:
+#   per_page: 10
+
+# Generate categories from directory-tree
+# Dependencies: https://github.com/xu-song/hexo-auto-category
+# depth: the max_depth of directory-tree you want to generate, should > 0
+auto_category:
+ enable: true
+ depth:
