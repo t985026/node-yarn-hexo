@@ -36,7 +36,7 @@ docker run -itd --name=hexo-blog -p 4000:4000 -v /somewhere/blog:/workspace/blog
 ## 控制器
 ```
 # Start the server
-docker run --rm -d --name=hexo-blog t985026/node-yarn-hexo:control hexo server -i 0.0.0.0
+docker run -itd --name=hexo-blog t985026/node-yarn-hexo:control hexo server -i 0.0.0.0
 # New pages
 docker run --rm --volumes-from hexo-blog t985026/node-yarn-hexo:control hexo new page "categories"
 # New post
