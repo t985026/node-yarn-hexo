@@ -2,7 +2,7 @@
 
 # control
 # just call hexo directly
-# hexo $@
+hexo $@
 
-echo "Starting server..."
-hexo server -i 0.0.0.0
+# echo "Starting server..."
+# hexo server -i 0.0.0.0

@@ -5,46 +5,39 @@
 
 ## Quick start
 ```shell
-docker run -itd --name=hexo-blog -p 4000:4000 t985026/node-yarn-hexo:latest
+docker run -itd --name=hexo-blog -p 4000:4000 t985026/node-yarn-hexo:latest hexo server -i 0.0.0.0
 ```
 ## 掛載
 如果你需要備份文件，先啟動容器後輸入下列指令後再重新創建容器並掛載目錄
 ### 僅文章
 ```shell
-docker run -itd --name=hexo-blog -p 4000:4000 \
--v /somewhere/source:/workspace/blog/source \
-t985026/node-yarn-hexo:latest
+docker run -itd --name=hexo-blog -p 4000:4000 -v /somewhere/source:/workspace/blog/source t985026/node-yarn-hexo:latest hexo server -i 0.0.0.0
 ```
 
 ### 全目錄
 ```shell
-docker run --rm -d --name=hexo-blog t985026/node-yarn-hexo:latest && \
+docker run --rm -d --name=hexo-blog t985026/node-yarn-hexo:latest hexo server && \
+docker run --rm --volumes-from hexo-blog t985026/node-yarn-hexo:latest hexo new page "categories" && \
+docker run --rm --volumes-from hexo-blog t985026/node-yarn-hexo:latest hexo new page "about" && \
+docker run --rm --volumes-from hexo-blog t985026/node-yarn-hexo:latest hexo new page "tags" && \
 rm -rf /somewhere/blog && \
 docker cp hexo-blog:/workspace/blog /somewhere/blog && \
 docker stop hexo-blog && \
-docker run -itd --name=hexo-blog -p 4000:4000 -v /somewhere/blog:/workspace/blog t985026/node-yarn-hexo:latest
-```
-
-### 講解
-```shell
-# copy container directory to host
-docker cp hexo-blog:/workspace/blog /somewhere/blog
-# recreate your blog
-docker run -itd --name=hexo-blog -p 4000:4000 -v /somewhere/blog:/workspace/blog t985026/node-yarn-hexo:latest
+docker run -itd --name=hexo-blog -p 4000:4000 -v /somewhere/blog:/workspace/blog t985026/node-yarn-hexo:latest hexo server -i 0.0.0.0
 ```
 
 ## 控制器
 ```
 # Start the server
-docker run -itd --name=hexo-blog t985026/node-yarn-hexo:control hexo server -i 0.0.0.0
+docker run -itd --name=hexo-blog t985026/node-yarn-hexo:latest hexo server -i 0.0.0.0
 # New pages
-docker run --rm --volumes-from hexo-blog t985026/node-yarn-hexo:control hexo new page "categories"
+docker run --rm --volumes-from hexo-blog t985026/node-yarn-hexo:latest hexo new page "categories"
 # New post
-docker run --rm --volumes-from hexo-blog t985026/node-yarn-hexo:control hexo new foo
+docker run --rm --volumes-from hexo-blog t985026/node-yarn-hexo:latest hexo new foo
 # Generate static files:
-docker run --rm --volumes-from hexo-blog t985026/node-yarn-hexo:control hexo gen
+docker run --rm --volumes-from hexo-blog t985026/node-yarn-hexo:latest hexo gen
 # Deploy
-docker run --rm --volumes-from hexo-blog t985026/node-yarn-hexo:control hexo deploy
+docker run --rm --volumes-from hexo-blog t985026/node-yarn-hexo:latest hexo deploy
 ```
 
 
